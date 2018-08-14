@@ -35,6 +35,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -90,6 +92,12 @@ public class MainActivity extends AppCompatActivity implements
         if(extras != null && extras.containsKey("test")){
             Log.d(LOG_TAG, "Intent contains value: " + extras.getString("test"));
         }
+
+        // Get token from the id service and print to log
+        String token = FirebaseInstanceId.getInstance().getToken();
+        String message = getString(R.string.message_token_format, token);
+        Log.d(LOG_TAG, message);
+
     }
 
     @Override
